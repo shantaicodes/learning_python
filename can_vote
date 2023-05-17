@@ -1,0 +1,30 @@
+def main():
+    user_age = 0
+    user_age = get_age()
+    can_vote(user_age)
+
+# input
+def get_age():
+    """
+    Prompts the user to enter their age
+    and returns it as an integer
+    :return: int, user's age
+    """
+    age = 0
+    age = int(input('Enter your age in years: '))
+    return age
+
+
+# output
+def can_vote(age):
+    """
+    Prints out if a user is old enough to vote
+    :param age:
+    :return: none
+    """
+    if age < 18:
+        print('You are too young to vote')
+    else:
+        print('You can vote')
+
+main()
