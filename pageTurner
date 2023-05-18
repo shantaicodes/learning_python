@@ -1,0 +1,198 @@
+# ******************************************************************************
+# Author:           Shantai Green
+# Description:      This program prompts a user for their name, how many pages
+#                   they've read each day for a week, and calculates and prints
+#                   metrics based on their input.
+# Input:            name (string), pages read (int)
+# Output:           A list of the following metrics: total pages read in a week
+#                   average daily pages read, the fewest pages read, and the most
+#                   pages read.
+# ******************************************************************************
+
+# ******************************************************************************
+# Sample Run:
+#
+# Hello, welcome to PageTurner, your friendly book-reading tracker!
+#
+# PageTurner tracks how many pages you've read each day for a week
+# and then provides you with cool metrics to help you understand
+# how many pages you're really turning!
+#
+# To begin, tell me your name: Alice
+#
+# Okay, Alice, let's start tracking those pages!
+#
+# Enter the number of pages you read on Monday: 25
+# Enter the number of pages you read on Tuesday: 5
+# Enter the number of pages you read on Wednesday: 30
+# Enter the number of pages you read on Thursday: 45
+# Enter the number of pages you read on Friday: 0
+# Enter the number of pages you read on Saturday: 80
+# Enter the number of pages you read on Sunday: 21
+#
+#
+# Alice, here are this week's metrics:
+#
+# Weekly Pages: 206
+# Average Daily Pages: 29
+# Fewest Pages: 0
+# Most Pages: 80
+#
+# Goodbye for now, Alice. Keep turning those pages!
+#
+# ******************************************************************************
+
+
+def main():
+  list_pages_read = []
+  user_name = ''
+  total_pages_read = 0
+  avg_daily_pages = 0
+
+  print_intro()
+
+  print_purpose()
+
+  user_name = get_name()
+
+  print_start_intro(user_name)
+
+  list_pages_read = get_pages()
+
+  total_pages_read = calc_sum(list_pages_read)
+
+  avg_daily_pages = calc_avg(total_pages_read, list_pages_read)
+
+  print_metrics(user_name, list_pages_read, total_pages_read, avg_daily_pages)
+
+  print_goodbye(user_name)
+
+
+def get_pages():
+  num_pages_read = []
+  """
+  Prompts the user to enter the number of pages they
+  read each day and stores them in a list
+  :param: none
+  :return: list, a list of all the pages read
+  """
+  days = [
+    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+    'Sunday'
+  ]
+  for day in days:
+    pages = 0
+    pages = int(input(f'Enter the number of pages you read on {day}: '))
+    if pages < 0:
+      print("Error! It's impossible to read backwards in time!")
+      pages = int(input(f'Enter a valid number of pages for {day}: '))
+    num_pages_read.append(pages)
+  return num_pages_read
+
+
+# get the user's name
+def get_name():
+  """
+  Prompts the user to enter their name
+  :param: none
+  :return: str, user's name
+  """
+  name = ''
+  name = input('To begin, tell me your name: ')
+  return name
+
+
+# calculates the sum of list items
+def calc_sum(list):
+  """
+  Calculates the sum of the number of pages in the list
+  :param list: list, the list of the number of pages read
+  :return sum: int, the sum of the pages read
+  """
+  sum = 0
+  for num in list:
+    sum += num
+  return sum
+
+
+# find the average of items in list
+def calc_avg(sum, list):
+  """
+    Calculates the average number of pages read per day
+    :param sum: int, total of pages read
+    :param list: list, a list of the number of pages read
+    :return: int, average of pages in the list
+    """
+  avg_pages = 0
+  avg_pages = int(sum / len(list))
+  return avg_pages
+
+
+# define output functions
+
+#introduction
+
+
+def print_intro():
+  """
+  Prints an introduction to the app
+  :param: none
+  :return: none
+  """
+  print("Hello! Welcome to PageTurner, your friendly book-reading tracker!\n")
+
+
+#purpose
+def print_purpose():
+  """
+  Prints a detailed purpose of the app
+  :param: none
+  :return: none
+  """
+  print(
+    'PageTurner tracks how many pages you\'ve read each day for a week\n'
+    'and then gives you cool metrics to help you understand \nhow many pages '
+    'you\'re really turning!\n')
+
+
+# start intro
+def print_start_intro(user_name):
+  """
+  Prints a personalized start to the page inputs
+  :param user_name: str, the user name
+  :return: none
+  """
+  print(f"\nOkay, {user_name}, let\'s start tracking those pages!\n")
+
+
+def print_metrics(user_name, pages, total_pages, avg_pages):
+  """
+  Prints the total number of pages the user read that week, 
+  the average number of pages read each day, the fewest
+  amount of pages read in a day that week, and the most amount 
+  of pages read in a day that week
+  :param user_name: str, user's name
+  :param pages: list, list of the number of pages read 
+  :param total_pages: int, the sum of the pages read
+  :param avg_pages: int, the daily average of pages read
+  """
+  min_pages = 0
+  max_pages = 0
+  min_pages = min(pages)
+  max_pages = max(pages)
+  print(f"\n\n{user_name}, here are this week's metrics.\n")
+  print(
+    f"Weekly Pages: {total_pages}\nAverage Daily Pages: {avg_pages}\nFewest Pages: {min_pages}\nMost Pages: {max_pages}"
+  )
+
+
+def print_goodbye(user_name):
+  """
+  Prints a personalized goodbye to the user
+  :param user_name: str, user's name
+  :return: none
+  """
+  print(f'\nGoodbye for now, {user_name}. Keep turning those pages!')
+
+
+main()
