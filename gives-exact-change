@@ -1,0 +1,138 @@
+# ******************************************************************************
+# Author:           Shantai Green
+# Description:      This program prompts a user for their change and converts
+#                   the change to exact coins.
+# Input:            change(int)
+# Output:           A list of coin amounts.
+#
+# ******************************************************************************
+
+
+# Sample Run
+# Hello, hello! Welcome to the ChangeMaker!
+
+# Enter the amount of money you have in cents,
+# and I'll tell you how much money you have in exact change!
+# How much money do you have in cents? 872
+
+# You have:
+# 8 dollar(s)
+# 2 quarter(s)
+# 2 dime(s)
+# 0 nickel(s)
+# 2 cent(s)!
+
+# Thanks for playing!
+# Goodbye!
+
+
+# Global Constants
+DOLLAR = 100
+QUARTER = 25
+DIME = 10
+NICKEL = 5
+PENNY = 1
+
+# full program
+def main():
+    user_money = 0
+    money_list = []
+
+    print_intro()
+
+    print_purpose()
+
+    user_money = get_user_money()
+
+    money_list = make_change(user_money)
+
+    print_change(money_list)
+
+    print_goodbye()
+
+
+# input functions
+def get_user_money():
+    """
+    Prompts the user to enter their money in cents
+    :return: int, the amount of money the user has
+    """
+    user_money = 0
+    user_money = int(input("How much money do you have in cents? "))
+    return user_money
+
+
+# process functions
+def make_change(money):
+    """
+    Converts user money to change
+    :param: int, the money the user has
+    :return: list
+    """
+    dollars = 0
+    quarters = 0
+    dimes = 0
+    nickels = 0
+    pennies = 0
+    money_list = []
+    while money > 0:
+        if money >= DOLLAR:
+            dollars = money // DOLLAR
+            money = money % DOLLAR
+        elif money >= QUARTER:
+            quarters = money // QUARTER
+            money = money % QUARTER
+        elif money >= DIME:
+            dimes = money // DIME
+            money = money % DIME
+        elif money >= NICKEL:
+            nickels = money // NICKEL
+            money = money % NICKEL
+        elif money >= PENNY:
+            pennies = money
+            money = 0
+        money_list = [dollars, quarters, dimes, nickels, pennies]
+    return money_list
+
+
+# output functions
+def print_change(m_list):
+    """
+    Prints out the number and types of coins the user has
+    :param m_list: list, list of the coins the user has
+    :return: none
+    """
+    print(f'\nYou have:\n{m_list[0]} dollar(s)\n{m_list[1]} quarter(s)'
+          f'\n{m_list[2]} dime(s)\n{m_list[3]} nickel(s)\n'
+          f'{m_list[4]} cent(s)!')
+
+
+def print_intro():
+    """
+    Prints out an introduction to the app.
+    :param: none
+    :return:
+    """
+    print('Hello, hello! Welcome to the ChangeMaker!\n')
+
+
+def print_purpose():
+    """
+    Prints out the purpose of the app
+    :param: none
+    :return:
+    """
+    print('Enter the amount of money you have in cents,\n'
+          'and I\'ll tell you how much money you have in exact change!')
+
+
+def print_goodbye():
+    """
+    Prints out a farewell to the user
+    :param: none
+    :return:
+    """
+    print('\nThanks for playing!\nGoodbye!')
+
+
+main()
