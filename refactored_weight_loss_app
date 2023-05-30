@@ -1,0 +1,1100 @@
+// learning oop right now, so i refactored the parallel lists into objects (food and meal)
+
+# ******************************************************************************
+# Author:           Shantai Green
+# Lab:              Lab 9
+# Date:             05/27/2023
+# Description:      This program prompts a user for their name, their age,
+#                   their current body weight in pounds,
+#                   their goal body weight in pounds,
+#                   and their height. It uses this information to
+#                   decide if the user is the right age to use
+#                   the program, if their goal matches the weight-loss intentions
+#                   of the app, and if their goal is a healthy one.
+#                   If the user is the right age and has a goal weight
+#                   that is healthy and less than
+#                   their starting weight, the program calculates
+#                   and displays how much weight the user must lose to
+#                   reach their chosen goal weight.
+#                   The user may log their calories and predict their
+#                   future weight loss.
+# Input:            name (string), age (int), current weight (float),
+#                   goal weight (float), food (object), food name (str),
+#                   calories (float), meal (object)
+#                   height (int)
+# Output:           A sentence expressing the number of pounds the user
+#                   must lose to reach their goal weight.
+#                   A calorie log, a prediction of weight loss.
+# Sources:          Lab 9 specifications
+#                   Basically all the Modules
+#                   Codecademy Intermediate
+#                   Python Lesson 1: Python Gotcha: Mutable Default Arguments
+# ******************************************************************************
+#### CREATE A SECTION THAT CREATES A DIET PLAN FOR THE USER BASED ON THEIR GOALS
+# ******************************************************************************
+# Sample Run:
+#
+# Hi! Please enter your first name: alice
+#
+#
+#  ___                   ___
+# (   )                 (   )                       .-.
+#  | |   ___     .---.   | |    .--.    ___ .-.    ( __)   .--.
+#  | |  (   )   / .-, \  | |   /    \  (   )   \   (''")  /    \
+#  | |  ' /    (__) ; |  | |  |  .-. ;  | ' .-. ;   | |  |  .-. ;
+#  | |,' /       .'`  |  | |  | |  | |  |  / (___)  | |  |  | | |
+#  | .  '.      / .'| |  | |  | |  | |  | |         | |  |  |/  |
+#  | | `. \    | /  | |  | |  | |  | |  | |         | |  |  ' _.'
+#  | |   \ \   ; |  ; |  | |  | '  | |  | |         | |  |  .'.-.
+#  | |    \ .  ' `-'  |  | |  '  `-' /  | |         | |  '  `-' /
+# (___ ) (___) `.__.'_. (___)  `.__.'  (___)       (___)  `.__.'
+#
+#
+#
+#
+# Welcome, Alice, to the first step of your weight-loss journey!
+#
+# This program is designed to help you lose weight.
+# Not only will this program tell you how much weight you
+# need to lose in order to reach your goal weight,
+# it will also allow you to log your meals and even predict,
+# based on your activity level and caloric intake,
+# how much weight you're likely to lose in a month.
+#
+# Before we begin, please enter your age: 30
+#
+# Choose your biological sex:
+# 1. Female
+# 2. Male
+# Enter choice: 1
+#
+# Enter your current weight in pounds: 150
+# Enter your goal weight in pounds: 140
+# Enter your height in inches: 68
+#
+# Fantastic, Alice! You've chosen a healthy goal weight!
+#
+# 1. Sedentary
+# 2. Light Exercise (1-2x/wk)
+# 3. Moderate Exercise (3-5x/wk)
+# 4. Heavy (6-7x/wk)
+# 5. Athlete (2x/day)
+#
+# Choose your activity level: 1
+#
+# Alice, you will need to lose 10.0 lbs to reach your goal
+# weight of 140.0 lbs.
+#
+# 1. Log food
+# 2. Delete food from log
+# 3. Print out log
+# 4. Predict weight loss
+# 5. Quit
+#
+# Enter your choice: 1
+#
+# 1. Breakfast
+# 2. Lunch
+# 3. Dinner
+# 4. Snack
+#
+# Enter your choice: 1
+# Breakfast | 0.0 calories
+# Enter the name of the food: frap
+# Enter the number of calories: 300
+#
+# Frap | 300.0 cals
+#
+# Log more food to this meal? (y/n): y
+# Enter the name of the food: apple
+# Enter the number of calories: 100
+#
+# Apple | 100.0 cals
+#
+# Log more food to this meal? (y/n): n
+#
+# Breakfast log is complete.
+#
+# Breakfast | 400.0 calories
+#
+# Log another meal? (y/n) y
+#
+# 1. Breakfast
+# 2. Lunch
+# 3. Dinner
+# 4. Snack
+#
+# Enter your choice: 2
+# Lunch | 0.0 calories
+# Enter the name of the food: sammie
+# Enter the number of calories: 500
+#
+# Sammie | 500.0 cals
+#
+# Log more food to this meal? (y/n): n
+#
+# Lunch log is complete.
+#
+# Lunch | 500.0 calories
+#
+# Log another meal? (y/n) n
+#
+# Great job logging your intake, Alice.
+# Being aware of what you eat can empower you
+# to make healthier choices.
+#
+# So far, Alice, you have logged:
+# Breakfast | 400.0 calories
+# Lunch | 500.0 calories
+#
+#
+# 1. Log food
+# 2. Delete food from log
+# 3. Print out log
+# 4. Predict weight loss
+# 5. Quit
+#
+# Enter your choice: 3
+#
+# Breakfast
+# ------------------
+# Frap | 300.0 cals
+# Apple | 100.0 cals
+# ------------------
+# Total Calories:  400.0
+#
+#
+# Lunch
+# ------------------
+# Sammie | 500.0 cals
+# ------------------
+# Total Calories:  500.0
+#
+#
+# Today's total intake: 900.0 calories.
+#
+# 1. Log food
+# 2. Delete food from log
+# 3. Print out log
+# 4. Predict weight loss
+# 5. Quit
+#
+# Enter your choice: 2
+#
+# Here are the meals you've logged today!
+#
+# 1. Breakfast
+# 2. Lunch
+# Enter your choice: 2
+# 1. Sammie
+#
+# Enter your choice: 1
+# Lunch | 0.0 calories
+#
+# 1. Log food
+# 2. Delete food from log
+# 3. Print out log
+# 4. Predict weight loss
+# 5. Quit
+#
+# Enter your choice: 3
+#
+# Breakfast
+# ------------------
+# Frap | 300.0 cals
+# Apple | 100.0 cals
+# ------------------
+# Total Calories:  400.0
+#
+#
+# Today's total intake: 400.0 calories.
+#
+# 1. Log food
+# 2. Delete food from log
+# 3. Print out log
+# 4. Predict weight loss
+# 5. Quit
+#
+# Enter your choice: 4
+# Your cal count is a bit low, Alice.
+# Eat a bit more today, and then we can talk. :)
+#
+# 1. Log food
+# 2. Delete food from log
+# 3. Print out log
+# 4. Predict weight loss
+# 5. Quit
+#
+# Enter your choice: 5
+#
+# Thanks for choosing to take care of your health, Alice!
+#
+# Process finished with exit code 0
+
+# import modules
+import valid as v
+
+# Declares the global constants
+CM_CONVERSION_RATE = 2.54
+KG_CONVERSION_RATE = 1 / 2.20462
+CAL_LBS_CONVERSION_RATE = 1 / 3500
+DAYS_IN_MTH = 30
+
+
+# Defines the main function sequentially
+def main():
+    # variables for user information
+    name = ''
+    current_weight = 0.0
+    goal_weight = 0.0
+    pounds_to_lose = 0.0
+    height = 0.0
+    kg_weight = 0.0
+    cm_height = 0.0
+    goal_bmi = 0.0
+    age = 0
+    user_bmr = 0.0
+    user_activity_level = 0
+    user_tdee = 0.0
+    sex = ''
+
+    # variables for user body calculations
+    daily_cal_diff = 0.0
+    monthly_cal_diff = 0.0
+    monthly_lbs = 0.0
+
+    # variables for calorie logging
+    edit_this_meal = 0
+    delete_this_food = 0
+    todays_meals = []
+
+    # variables for control flow
+    go = ''
+    log_meals = False
+
+    # This section gets the user's starting info
+    name = get_name()
+    print_welcome(name)
+    print_purpose()
+    age = get_age()
+    sex = get_user_sex()
+    current_weight = get_current_weight()
+    goal_weight = get_goal_weight(current_weight)
+    height = get_height()
+
+    # This subsection determines whether the goal is healthy
+    go = 'Y'
+    while go == 'Y':
+        goal_bmi = calculate_goal_bmi(goal_weight, height)
+        # validates goal bmi
+        go = check_goal_bmi(goal_bmi, name)
+        if go == 'Y':
+            goal_weight = get_goal_weight(current_weight)
+
+    # Continue to get user information
+    print_activity_levels()
+    user_activity_level = get_choice(1, 5, "Choose your activity level: ")
+    kg_weight = convert_value(current_weight, KG_CONVERSION_RATE)
+    cm_height = convert_value(height, CM_CONVERSION_RATE)
+    user_bmr = calculate_bmr(sex, kg_weight, cm_height, age)
+    user_tdee = calculate_tdee(user_activity_level, user_bmr)
+
+    # Calculates lbs to lose
+    pounds_to_lose = calculate_lbs_to_lose(current_weight, goal_weight)
+    print_lbs_to_lose(name, pounds_to_lose, goal_weight)
+
+    # begin next section of program
+    go = True
+    while go:
+        print_menu()
+        choice = get_choice(1, 5)
+
+        if choice == 1:  # ADD FOOD
+            log_meals = True
+            while log_meals:
+                print_meal_choices()
+                meal = create_meal()
+                add_meal_to_array(meal, todays_meals)
+                add_food_to_meal(meal)
+                print(meal)
+                print()
+                log_meals = v.get_y_or_n("Log another meal? (y/n) ") == 'y'
+            print(f"\nGreat job logging your intake, {name}. "
+                  f"Being aware of what you eat "
+                  f"can empower you to make healthier choices.")
+            print_post_log_info(name, todays_meals)
+
+        elif choice == 2:  # REMOVE FOOD
+            print_with_intent_to_edit(todays_meals)
+            edit_this_meal = get_choice(1, len(todays_meals))
+            edit_this_meal -= 1
+            meal_obj_temp = grab_meal_from_array(edit_this_meal, todays_meals)
+            meal_obj_temp.print_to_edit()
+            delete_this_food = get_choice(1, len(meal_obj_temp.get_foods()))
+            meal_obj_temp.remove_food(delete_this_food)
+            print(meal_obj_temp)
+            meal_obj_temp.print_foods()
+            if len(meal_obj_temp.get_foods()) == 0:
+                todays_meals.pop(edit_this_meal)
+
+        elif choice == 3:  # PRINT COMPLETE LOG
+            print_complete_log(todays_meals)
+
+        elif choice == 4:  # PREDICT FUTURE WEIGHT LOSS
+            total_day_cals = calculate_tot_calories(todays_meals)
+            if total_day_cals == 0:
+                print("No calories have been logged today.")
+                print("Please log your calories to predict your weight loss")
+            elif total_day_cals < 800:
+                print(f"Your cal count is a bit low, {name}. "
+                      f"Eat a bit more today, and then we can talk. :)")
+            elif total_day_cals >= 800:
+                daily_cal_diff = calculate_cal_diff(total_day_cals, user_tdee)
+                monthly_cal_diff = convert_value(daily_cal_diff, DAYS_IN_MTH)
+                monthly_lbs = convert_value(monthly_cal_diff, CAL_LBS_CONVERSION_RATE)
+                monthly_lbs = round(monthly_lbs, 2)
+                if monthly_lbs > 0:
+                    print(f"{name}, if you keep eating like this, "
+                          f"you will gain weight.")
+                    print(f"At this rate, you may gain"
+                          f" {monthly_lbs} lbs each month.")
+                elif monthly_lbs == 0:
+                    print(f"{name}, you're currently in maintenance mode. "
+                          f"No loss. No gain.")
+                elif monthly_lbs < 0:
+                    monthly_lbs = make_pos_or_neg(monthly_lbs)
+                    print(f"{name}, you're eating to lose weight!")
+                    print(f"At this rate, you may lose {monthly_lbs} lbs each month.")
+
+        elif choice == 5:  # QUIT PROGRAM
+            go = False
+
+    # End of program
+    print_goodbye(name)
+
+
+# Defines classes and their methods
+
+# Food Class
+
+class Food:
+    name = ""
+    calories = 0.0
+
+    def __init__(self, name="", calories=0.0):
+        """
+        Creates an instance of the Food class
+        :param name: str, the name of the food
+        :param calories: float, the number of calories
+        in the food
+        """
+        self.__name = name
+        self.__calories = calories
+
+    def __str__(self):
+        """
+        Provides a string representation of the food object
+        :return: str, the food's name and calorie count
+        """
+        return f"{self.__name.title()} | {self.__calories} cals"
+
+    # Set the states of the instance
+    def set_name(self):
+        """
+        Prompts the user to enter the name of the food
+        and assigns the string value to the food's
+        name state
+        :return: none
+        """
+        name = v.get_string("Enter the name of the food: ")
+        self.__name = name
+
+    def set_calories(self):
+        """
+        Prompts the user to enter the food's calorie count
+        and assigns the float value to the food's
+        calorie state
+        :return: none
+        """
+        calories = v.get_real("Enter the number of calories: ")
+        while calories < 0:
+            print("Negative calories don't exist.")
+            calories = v.get_real("Enter the number of calories: ")
+        self.__calories = calories
+
+    # Retrieve the states of the instance
+    def get_name(self):
+        """
+        Returns the name state of the food
+        :return: str, the food's name
+        """
+        return self.__name
+
+    def get_calories(self):
+        """
+        Returns the calorie state of the food
+        :return: float, the number of calories
+        in the food
+        """
+        return self.__calories
+
+
+# Meal Class
+class Meal:
+    name = ""
+    total_calories = 0.0
+    foods = []
+
+    def __init__(self, name, total_calories=0.0, foods=None):
+        """
+        Creates an instance of a Meal object
+        :param name: str, the name of the meal
+        :param total_calories: float, the number of calories
+        in the meal
+        :param foods: array, the array of food objects
+        in the meal
+        """
+        # prevents mutable default argument errors
+        if foods is None:
+            foods = []
+
+        self.__name = name
+        self.__total_calories = total_calories
+        self.__foods = foods
+
+    def __str__(self):
+        """
+        Returns a string representation of the meal object
+        providing its name and calorie count
+        :return: str, the meal's name and its calorie count
+        """
+        return f"{self.__name.capitalize()} | {self.__total_calories} calories"
+
+    # Retrieve states of instance
+    def get_name(self):
+        """
+        Returns the name state of the meal object
+        :return: str, the meal's name
+        """
+        return self.__name
+
+    # couldn't i make a set name that does all that other stuff from create meal?
+
+    def get_foods(self):
+        """
+        Returns the list of foods
+        stored in the meal object
+        :return: array, the food objects in the meal
+        """
+        return self.__foods
+
+    def get_total_calories(self):
+        """
+        Returns the calorie count of the meal
+        :return: float, the calories in the meal
+        """
+        return self.__total_calories
+
+    # Print full meal information
+    def print_foods(self):
+        """
+        Prints out an easy-to-read list of
+        all the food objects and their states
+        :return: none
+        """
+        if len(self.__foods) > 0:
+            print("\n" + self.__name.capitalize())
+            print("------------------")
+            food_list = self.__foods
+            for food in food_list:
+                print(food)
+            print("------------------")
+            print("Total Calories: ", self.get_total_calories())
+            print()
+
+    # Modifies the meal object
+    # To add foods
+    def add_food(self, food):
+        """
+        Adds a food object to the meal object
+        :param food: obj, food
+        :return: none
+        """
+        self.__foods.append(food)
+        self.__total_calories += food.get_calories()
+
+    # To remove foods
+    def print_to_edit(self):
+        """
+        Prints out a list of the
+        foods currently stored in the meal
+        object for the purpose of choosing
+        one food to delete
+        :return: none
+        """
+        count = 1
+        for food in self.__foods:
+            print(f"{count}. {food.get_name().title()}")
+            count += 1
+        print()
+
+    def remove_food(self, num_choice):
+        """
+        Takes the num_choice and converts it
+        to the index value of the chosen food to delete
+        from the meal object's foods array
+        And deletes that food from the array
+        And removes that food's calorie count from
+        the meal's calorie count
+        :param num_choice: int, represents chosen food
+        to delete
+        :return: none
+        """
+        remove_index = num_choice - 1
+        remove_this_food = self.__foods[remove_index]
+        remove_these_cals = remove_this_food.get_calories()
+        self.__total_calories -= remove_these_cals
+        self.__foods.pop(remove_index)
+
+
+# Defines the input functions
+
+def get_name(prompt="Hi! Please enter your first name: "):
+    """
+    Prompts the user to enter their name
+    :param: none
+    :return: string, user's name
+    """
+    is_valid = False
+    name = input(prompt)
+    is_valid = name.isalpha()
+    while not is_valid:
+        print("Invalid name.")
+        name = input(prompt)
+        is_valid = name.isalpha()
+    return name.capitalize()
+
+
+def get_current_weight():
+    """
+    Prompts the user to enter their current weight in lbs
+    and validates the input for type and reasonableness
+    :param: none
+    :return: float, user's current weight
+    """
+    current_weight = 0.0
+    current_weight = v.get_real("\nEnter your current weight "
+                                "in pounds: ")
+    while current_weight < 60 or current_weight > 700:
+        print("Invalid weight.")
+        current_weight = v.get_real("\nEnter your current weight "
+                                    "in pounds: ")
+    return current_weight
+
+
+def get_goal_weight(current_weight):
+    """
+    Prompts the user to enter their goal weight in lbs,
+    validating for type and reasonableness of goal weight
+    :param current_weight: float, user's current weight
+    :return: float, user's goal weight
+    """
+    goal_weight = 0.0
+    answer = ""
+    is_alpha = False
+    is_y_or_n = False
+    goal_weight = v.get_real("Enter your goal weight in pounds: ")
+    while goal_weight < 0:
+        print("\nInvalid goal weight.\nLet's try again.")
+        goal_weight = v.get_real("Enter your REAL goal weight in pounds: ")
+    # checks for the reasonableness of the goal weight
+    while goal_weight >= current_weight:
+        if goal_weight > current_weight:
+            print("\nThis is a weight-loss app, not a weight-gain app. "
+                  "Please bulk elsewhere, friend.\n")
+        else:
+            print("\nYou're currently at your goal weight. Congrats!\n")
+        # now we will ask if the user would like to reenter their gw
+        answer = input("Would you like to reenter your goal weight? (Y/N): ")
+        answer = answer.upper()
+        # validates that the answer is alphabetic
+        is_alpha = answer.isalpha()
+        if answer == 'Y' or answer == 'N':
+            is_y_or_n = True
+        # validates that the answer is reasonable
+        while not (is_alpha or not is_y_or_n):
+            print("Invalid answer. (Y/N): ")
+            answer = input("Would you like to reenter "
+                           "your goal weight? (Y/N): ")
+        if answer == 'Y':
+            print("\nGreat!")
+            goal_weight = v.get_real("Enter your goal weight in pounds: ")
+        else:
+            print('No problem!\nGoodbye!')
+            exit()
+    return goal_weight
+
+
+def get_height():
+    """
+    Prompts the user to enter their height in inches
+    :param: none
+    :return: none
+    """
+    height = 0
+    height = v.get_real("Enter your height in inches: ")
+    # i tried to account for dwarfism and gigantism
+    while height < 48.0 or height > 96.0:
+        print("Invalid input.")
+        height = v.get_real("Enter your height in inches: ")
+    return height
+
+
+def get_user_sex():
+    """
+    Prompts the user to choose their
+    biological sex from list of options
+    :return: str, user sex
+    """
+    user_sex = ""
+    choice = 0
+    print("\nChoose your biological sex:"
+          "\n1. Female"
+          "\n2. Male")
+    choice = v.get_integer("Enter choice: ")
+    while choice < 1 or choice > 2:
+        print("Invalid choice.")
+        choice = v.get_integer("Enter choice: ")
+    if choice == 1:
+        user_sex = "f"
+    elif choice == 2:
+        user_sex = "m"
+    return user_sex
+
+
+def get_choice(minimum, maximum, prompt="Enter your choice: "):
+    """
+    Prompts the user to enter a number
+    :return: int, chosen number
+    """
+    choice = 0
+    choice = v.get_integer(prompt)
+    while choice < minimum or choice > maximum:
+        print("Invalid choice.")
+        choice = v.get_integer(prompt)
+    return choice
+
+
+def get_meal():
+    """
+    Determines the meal that the user is logging
+    :return: str, the meal
+    """
+    meal_choice = 0
+    meal_choice = v.get_integer("Enter meal choice: ")
+    while meal_choice < 1 or meal_choice > 4:
+        print("Invalid choice.")
+        meal_choice = v.get_integer("Enter meal choice: ")
+    if meal_choice == 1:
+        meal = "Breakfast"
+    elif meal_choice == 2:
+        meal = "Lunch"
+    elif meal_choice == 3:
+        meal = "Dinner"
+    elif meal_choice == 4:
+        meal = "Snack"
+    return meal
+
+
+def add_food_to_meal(meal_obj):
+    """
+    Adds food objects to designated
+    meal object
+    :param meal_obj:
+    :return: none
+    """
+    add_more = 'y'
+    while add_more == 'y':
+        new_food = Food()
+        new_food.set_name()
+        new_food.set_calories()
+        meal_obj.add_food(new_food)
+        print()
+        print(new_food)
+        print()
+        add_more = v.get_y_or_n("Log more food to this meal? (y/n): ")
+    print(f"\n{meal_obj.get_name().capitalize()} log is complete.\n")
+
+
+def check_goal_bmi(goal_bmi, name):
+    """
+     Checks to see if the user's BMI at their goal weight
+     is a healthy choice or not
+     :param name: string, the user's name
+     :param goal_bmi: float, the user's BMI at goal weight
+     :return: str, the user's answer regarding
+     reentering goal weight
+     """
+    go = ''
+    go = 'N'
+    if goal_bmi < 18.5:
+        print(f"\nI'm sorry, {name}. Your goal weight is too "
+              f"low for your height.\n")
+    elif goal_bmi > 24.9:
+        print(f"\nI'm sorry, {name}. Your goal weight is too "
+              f"high for your height.\n")
+    else:
+        print(f"\nFantastic, {name}! You've chosen "
+              f"a healthy goal weight!")
+    if goal_bmi < 18.5 or goal_bmi > 24.9:
+        go = v.get_y_or_n("Would you like to enter a "
+                          "healthier goal weight? (Y/N) ").upper()
+        if go == 'N':
+            print(f"No problem, {name}!\nGoodbye!")
+            exit()
+    return go
+
+
+def get_age():
+    """
+    Prompts the use to enter their age
+    and validates the type, range, and
+    reasonableness of the input
+    :return: int, the user's age
+    """
+    user_age = 0
+    user_age = v.get_integer("\nBefore we begin, please enter your age: ")
+    # check that it's a positive number
+    while user_age <= 0 or user_age > 120:
+        print("\nLet's try again.")
+        user_age = v.get_integer("\nPlease enter your REAL age: ")
+    if user_age < 18:
+        print(f"\nI'm sorry, but you'll have to wait "
+              f"{18 - user_age} years to use this app.\nGoodbye!")
+        exit()
+    elif user_age > 91:
+        print(f"\nWhile you've accomplished many things "
+              f"in your {user_age} years, using this app "
+              f"just won't be one of them.\nGoodbye!")
+        exit()
+    return user_age
+
+
+# Defines the process functions
+
+def add_meal_to_array(meal_obj, meal_arr):
+    """
+    Updates the list of daily meals
+    to show the addition of a newly
+    logged meal
+    :param meal_obj: object, meal
+    :param meal_arr: array, array of all meals
+    :return: none
+    """
+    meal_arr.append(meal_obj)
+
+
+def grab_meal_from_array(meal_index, meal_arr):
+    return meal_arr[meal_index]
+
+
+def create_meal():
+    """
+    Creates a meal object
+    :return: object, meal
+    """
+    choice = get_choice(1, 4)
+    chosen_meal = choose_meal_option(choice)
+    new_meal = Meal(chosen_meal)
+    print(new_meal)
+    return new_meal
+
+
+def choose_meal_option(choice):
+    """
+    Returns the name of meal based
+    on numeric choice
+    :param choice: int, represents chosen
+    meal
+    :return: str, name of meal
+    """
+    if choice == 1:
+        meal = "Breakfast"
+    elif choice == 2:
+        meal = "Lunch"
+    elif choice == 3:
+        meal = "Dinner"
+    elif choice == 4:
+        meal = "Snack"
+    return meal
+
+
+def make_pos_or_neg(number):
+    """
+    Takes a real number
+    and changes the sign
+    :param number: float, number to change
+    :return: float, number with a different sign
+    """
+    number *= -1
+    return number
+
+
+def calculate_tot_calories(meal_obj_array):
+    tot_cal_count = 0.0
+    for meal_obj in meal_obj_array:
+        tot_cal_count += meal_obj.get_total_calories()
+    return tot_cal_count
+
+
+def convert_value(initial_val, conversion_rate):
+    """
+    This function converts measurements
+    :param initial_val: value to be converted
+    :param conversion_rate: rate of conversion
+    :return: float, converted value
+    """
+    converted_val = 0.0
+    converted_val = initial_val * conversion_rate
+    return converted_val
+
+
+def calculate_lbs_to_lose(current_weight, goal_weight):
+    """
+    Calculates how much weight in pounds the user
+    must lose to reach their goal weight
+    :param current_weight: float, user's current weight
+    :param goal_weight: float, user's goal weight
+    :return: float, how many pounds the user must lose
+    to reach their goal weight
+    """
+    pounds_to_lose = 0.0
+    pounds_to_lose = current_weight - goal_weight
+    return pounds_to_lose
+
+
+def calculate_goal_bmi(goal_weight, height):
+    """
+    Calculate's the BMI for the user's goal weight
+    :param goal_weight: int, user's goal weight
+    :param height: int, user's height
+    :return: float, user's body mass index
+    """
+    bmi = 0.0
+    bmi = goal_weight / height ** 2 * 703
+    return bmi
+
+
+def calculate_cal_diff(total_cal, tdee):
+    """
+    Calculates the difference between the daily
+    caloric input and output
+    based on the calorie log
+    :param total_cal: float, caloric input
+    :param tdee: float, caloric output
+    :return: float, the difference between
+    caloric input and caloric output
+    """
+    cal_diff = 0.0
+    cal_diff = total_cal - tdee
+    return cal_diff
+
+
+def calculate_tdee(activity_lev, bmr):
+    """
+    Calculates the avg daily calorie burn of
+    the user based on their bmr and activity level
+    :param activity_lev: int, user's activity level
+    :param bmr: float, user's bmr
+    :return: float, the avg daily calorie burn
+    """
+    tdee = 0.0
+    if activity_lev == 1:
+        tdee = bmr * 1.2
+    elif activity_lev == 2:
+        tdee = bmr * 1.375
+    elif activity_lev == 3:
+        tdee = bmr * 1.55
+    elif activity_lev == 4:
+        tdee = bmr * 1.725
+    elif activity_lev == 5:
+        tdee = bmr * 1.9
+    return tdee
+
+
+def calculate_bmr(sex, weight, height, age):
+    """
+    Calculates the amount of calories the user's body
+    burns daily at complete rest
+    :param sex: str, user's bio sex
+    :param weight: float, user's current weight in kg
+    :param height: float, user's height in cm
+    :param age: int, user's current age
+    :return: float, daily cals the user's body burns at rest
+    """
+    bmr = 0.0
+    if sex == "m":
+        bmr = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age
+    elif sex == "f":
+        bmr = 447.593 + 9.247 * weight + 3.098 * height - 4.330 * age
+    return bmr
+
+
+# Defines the output functions
+
+def print_welcome(name="Inigo Montoya"):
+    """
+    Prints a welcome message with user's name
+    :param name: string, user's name
+    :return: none
+    """
+    print("""
+    
+ ___                   ___                                      
+(   )                 (   )                       .-.           
+ | |   ___     .---.   | |    .--.    ___ .-.    ( __)   .--.   
+ | |  (   )   / .-, \  | |   /    \  (   )   \   (''")  /    \  
+ | |  ' /    (__) ; |  | |  |  .-. ;  | ' .-. ;   | |  |  .-. ; 
+ | |,' /       .'`  |  | |  | |  | |  |  / (___)  | |  |  | | | 
+ | .  '.      / .'| |  | |  | |  | |  | |         | |  |  |/  | 
+ | | `. \    | /  | |  | |  | |  | |  | |         | |  |  ' _.' 
+ | |   \ \   ; |  ; |  | |  | '  | |  | |         | |  |  .'.-. 
+ | |    \ .  ' `-'  |  | |  '  `-' /  | |         | |  '  `-' / 
+(___ ) (___) `.__.'_. (___)  `.__.'  (___)       (___)  `.__.'  
+                                                                
+                                                                
+    """)
+    print(f"\nWelcome, {name}, to the first step "
+          f"of your weight-loss journey!")
+
+
+def print_purpose():
+    """
+    Prints the purpose of the program
+    :param: none
+    :return: none
+    """
+    print("\nThis program is designed to help you lose weight."
+          "\nNot only will this program tell you how much weight you"
+          "\nneed to lose in order to reach your goal weight, "
+          "\nit will also allow you to log your meals and even predict, "
+          "based on your activity level and caloric intake, "
+          "\nhow much weight you're likely to lose in a month.")
+
+
+def print_lbs_to_lose(name, pounds_to_lose, goal_weight):
+    """
+    Prints a message with the user's name that
+    details how much weight the user must lose
+    in order to reach their goal weight
+    :param name: string, user's name
+    :param pounds_to_lose: float, pounds left to lose
+    :param goal_weight: float, user's goal weight
+    :return: none
+    """
+    print(f"\n{name}, you will need to lose {pounds_to_lose} lbs "
+          f"to reach your goal weight of {goal_weight} lbs.")
+
+
+def print_activity_levels():
+    """
+    Prints activity level options for TDEE
+    :return: none
+    """
+    print("\n1. Sedentary"
+          "\n2. Light Exercise (1-2x/wk)"
+          "\n3. Moderate Exercise (3-5x/wk)"
+          "\n4. Heavy (6-7x/wk)"
+          "\n5. Athlete (2x/day)\n")
+
+
+def print_menu():
+    """
+    Prints the menu of options
+    :return: none
+    """
+    print("\n1. Log food"
+          "\n2. Delete food from log"
+          "\n3. Print out log"
+          "\n4. Predict weight loss"
+          "\n5. Quit\n")
+
+
+def print_meal_choices():
+    """
+    Prints out the available meals to log
+    :return: none
+    """
+    print("\n1. Breakfast"
+          "\n2. Lunch"
+          "\n3. Dinner"
+          "\n4. Snack\n")
+
+
+def print_with_intent_to_edit(list_of_meals):
+    """
+    Prints out the names of the meals currently
+    created in order for the user to choose one
+    that they intend to edit
+    :param list_of_meals: array, array of all meal objects
+    currently created
+    :return: none
+    """
+    count = 0
+    meal_name = ''
+    print("\nHere are the meals you've logged today!\n")
+    for i in range(len(list_of_meals)):
+        count = i + 1
+        meal_name = list_of_meals[i].get_name().capitalize()
+        print(f"{count}. {meal_name}")
+
+
+def print_complete_log(meal_arr):
+    """
+    Prints out a detailed list of
+    the meals logged and their food and caloric
+    contents
+    :param meal_arr: array, array of all meal objects
+    :return:
+    """
+    total = 0.0
+    for meal in meal_arr:
+        meal.print_foods()
+    total = calculate_tot_calories(meal_arr)
+    print_total_cal(total)
+
+
+def print_total_cal(tot_cal):
+    """
+    Prints out the user's total caloric intake for the day
+    :param tot_cal: float, total calories
+    :return: none
+    """
+    print(f"\nToday's total intake: {tot_cal} calories.")
+
+
+def print_post_log_info(user_name, meal_arr):
+    """
+    Prints out the string representations of
+    all the meals the user has currently logged
+    :param user_name: str, the user's name
+    :param meal_arr: array, array of all meal objects
+    :return: none
+    """
+    print(f"\nSo far, {user_name}, you have logged: ")
+    for i in range(len(meal_arr)):
+        print(meal_arr[i])
+    print()
+
+
+def print_goodbye(user_name):
+    """
+    Prints out a personalized goodbye to the user
+    :param user_name:
+    :return:
+    """
+    print(f'\nThanks for choosing to take care of your health, {user_name}!')
+
+
+# Executes the program
+main()
